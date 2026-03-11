@@ -1,0 +1,13 @@
+# Streamlit secrets — never commit API keys
+.streamlit/secrets.toml
+
+# Local virtual environment
+tutorial-env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Local lead data (ephemeral, not needed in repo)
+leads.csv
