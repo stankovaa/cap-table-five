@@ -1056,7 +1056,8 @@ def _save_lead_airtable(form: dict, sidebar: dict) -> bool:
             "New Investors":          sidebar["new_pct"] / 100,
         })
         return True
-    except Exception:
+    except Exception as e:
+        st.error(f"Airtable save failed: {e}")
         return False
 
 
@@ -1169,33 +1170,3 @@ if st.session_state.show_email_form:
             else:
                 st.success("Thanks — your details have been saved.")
 
-# display raw data table for debugging
-# with st.expander("Show detailed data"):
-#     col1, col2, col3 = st.columns(3)
-#     with col1:
-#         st.subheader("Scenario A")
-#         chart1_df = pd.DataFrame({
-#             "Exit Valuation (M)": exit_vals / 1e6,
-#             "Sell Today (M)": sell_today_vals / 1e6,
-#             "Raise & Sell (M)": raise_sell_vals / 1e6,
-#             "Desired (M)": np.repeat(desired / 1e6, len(exit_vals)),
-#         })
-#         st.dataframe(chart1_df, use_container_width=True)
-#     with col2:
-#         st.subheader("Scenario B")
-#         chart2_df = pd.DataFrame({
-#             "Exit Valuation (M)": exit_vals / 1e6,
-#             "Raise & Sell (M)": raise_sell_vals / 1e6,
-#             "Risk-Adjusted (M)": risked_vals / 1e6,
-#             "Desired (M)": np.repeat(desired / 1e6, len(exit_vals)),
-#         })
-#         st.dataframe(chart2_df, use_container_width=True)
-#     with col3:
-#         st.subheader("Scenario C")
-#         chart3_df = pd.DataFrame({
-#             "Exit Valuation (M)": exit_vals / 1e6,
-#             "Difference (M)": difference_vals / 1e6,
-#         })
-#         st.dataframe(chart3_df, use_container_width=True)
-
-  
